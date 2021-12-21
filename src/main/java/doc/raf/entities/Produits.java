@@ -16,11 +16,60 @@ public class Produits implements Serializable {
     private double prixProd;
     private int quantiteProd;
 
-    public Produits(Object o, String pc_lenovo, int i, int i1) {
+
+    public Produits(Long idProd, String designationProd, double prixProd, int quantiteProd) {
+        this.idProd = idProd;
+        DesignationProd = designationProd;
+        this.prixProd = prixProd;
+        this.quantiteProd = quantiteProd;
     }
 
     public Produits() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Produits{" +
+                "idProd=" + idProd +
+                ", DesignationProd='" + DesignationProd + '\'' +
+                ", prixProd=" + prixProd +
+                ", quantiteProd=" + quantiteProd +
+                '}';
+    }
+
+
+
+    public Long getIdProd() {
+        return idProd;
+    }
+
+    public void setIdProd(Long idProd) {
+        this.idProd = idProd;
+    }
+
+    public String getDesignationProd() {
+        return DesignationProd;
+    }
+
+    public void setDesignationProd(String designationProd) {
+        DesignationProd = designationProd;
+    }
+
+    public double getPrixProd() {
+        return prixProd;
+    }
+
+    public void setPrixProd(double prixProd) {
+        this.prixProd = prixProd;
+    }
+
+    public int getQuantiteProd() {
+        return quantiteProd;
+    }
+
+    public void setQuantiteProd(int quantiteProd) {
+        this.quantiteProd = quantiteProd;
     }
 }
 

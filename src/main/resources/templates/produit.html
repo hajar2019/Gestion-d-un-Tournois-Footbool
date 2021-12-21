@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DocRaf</title>
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Les Produits
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr class="table-dark">
+                        <th>ID</th>
+                        <th>Designation</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+
+                    <tr th:each="p:${ListeProduit}" class="table-secondary">
+                        <td th:text="${p.idProd}"></td>
+                        <td th:text="${p.designationProd}"></td>
+                        <td th:text="${p.prixProd}"></td>
+                        <td th:text="${p.quantiteProd}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
