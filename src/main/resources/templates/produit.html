@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page>
 <head>
     <meta charset="UTF-8">
     <title>DocRaf</title>
@@ -20,13 +20,14 @@
                         <th>Quantité</th>
                     </tr>
 
-                    <tr th:each="p:${ListeProduit}" class="table-secondary">
-                        <td th:text="${p.idProd}"></td>
-                        <td th:text="${p.designationProd}"></td>
-                        <td th:text="${p.prixProd}"></td>
-                        <td th:text="${p.quantiteProd}"></td>
+                    <tr th:each="p:${lesProduits}" class="table-secondary">
+                        <td th:${p.idProd}></td>
+                        <td th:${p.designationProd}></td>
+                        <td th:${p.prixProd}></td>
+                        <td th:${p.quantiteProd}></td>
                     </tr>
                 </table>
+
             </div>
         </div>
 
