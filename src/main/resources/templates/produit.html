@@ -12,12 +12,19 @@
                 Les Produits
             </div>
             <div class="panel-body">
+                <form th:action="@{/index}" method="get">
+                    <input type="text" name="motCle" placeholder="Search Produits..." th:value="${motCle}">
+                    <button class="btn btn-primary" type="submit">rechercher</button>
+                </form>
+            </div>
+            <div class="panel-body">
                 <table class="table">
                     <tr class="thead-dark">
                         <th>ID</th>
                         <th>Designation</th>
                         <th>Prix</th>
                         <th>Quantité</th>
+                        <th>Supprimer</th>
                     </tr>
 
                     <tr th:each="p:${lesProduits}" class="table-secondary">
@@ -25,11 +32,14 @@
                         <td th:text="${p.designationProd}" ></td>
                         <td th:text="${p.prixProd}"></td>
                         <td th:text="${p.quantiteProd}" ></td>
+                        <td>
+                            <a onclick="return confirm('Vous voulez vraiment le supprimer?')" class="btn btn-danger" th:href="@{/delete(id=${p.idProd},page=${currentPage},motCle=${motCle})}">Delete</a>
+                        </td>
                     </tr>
                     </table>
                 <ul class="nav nav-pills">
                     <li th:class="${currentPage==status.index? 'active' : ''}"  th:each="page,status:${pages}">
-                        <a th:href="@{/index(page=${status.index})} "  th:text="${status.index} "></a>
+                        <a th:href="@{/index(page=${status.index},motCle=${motCle})} "  th:text="${status.index} "></a>
                     </li>
                 </ul>
 

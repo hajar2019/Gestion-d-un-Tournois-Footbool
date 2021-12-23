@@ -12,14 +12,14 @@ import java.io.Serializable;
 public class Produits implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProd;
-    private String DesignationProd;
+    private String designationProd;
     private double prixProd;
     private int quantiteProd;
 
 
     public Produits(Long idProd, String designationProd, double prixProd, int quantiteProd) {
         this.idProd = idProd;
-        DesignationProd = designationProd;
+        this.designationProd = designationProd;
         this.prixProd = prixProd;
         this.quantiteProd = quantiteProd;
     }
@@ -32,7 +32,7 @@ public class Produits implements Serializable {
     public String toString() {
         return "Produits{" +
                 "idProd=" + idProd +
-                ", DesignationProd='" + DesignationProd + '\'' +
+                ", DesignationProd='" + designationProd + '\'' +
                 ", prixProd=" + prixProd +
                 ", quantiteProd=" + quantiteProd +
                 '}';
@@ -49,11 +49,11 @@ public class Produits implements Serializable {
     }
 
     public String getDesignationProd() {
-        return DesignationProd;
+        return designationProd;
     }
 
     public void setDesignationProd(String designationProd) {
-        DesignationProd = designationProd;
+        designationProd = designationProd;
     }
 
     public double getPrixProd() {
