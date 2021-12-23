@@ -20,7 +20,7 @@ public class ProduitContoller {
     public String getAllProduits(Model model,@RequestParam(name = "page",defaultValue = "0") int page){
         Page<Produits> produits = prodRepo.findAll(PageRequest.of(page, 10));
         model.addAttribute("lesProduits", produits.getContent());
-       //ListeProduit c'est ce qui fait le refferencent avec thymeleaf pour afficher les produits TOUT comme ce qui est dans addAttribute
+       //ListeProduit c'est ce qui fait le refferencement avec thymeleaf pour afficher les produits TOUT comme ce qui est dans addAttribute
         model.addAttribute("pages", new int[produits.getTotalPages()]);
         model.addAttribute("currentPage", page);
         return "produit";
