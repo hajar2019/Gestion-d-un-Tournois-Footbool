@@ -13,7 +13,7 @@
             </div>
             <div class="panel-body">
                 <table class="table">
-                    <tr class="table-dark">
+                    <tr class="thead-dark">
                         <th>ID</th>
                         <th>Designation</th>
                         <th>Prix</th>
@@ -21,12 +21,17 @@
                     </tr>
 
                     <tr th:each="p:${lesProduits}" class="table-secondary">
-                        <td th:${p.idProd}></td>
-                        <td th:${p.designationProd}></td>
-                        <td th:${p.prixProd}></td>
-                        <td th:${p.quantiteProd}></td>
+                        <td th:text="${p.idProd}"></td>
+                        <td th:text="${p.designationProd}" ></td>
+                        <td th:text="${p.prixProd}"></td>
+                        <td th:text="${p.quantiteProd}" ></td>
                     </tr>
-                </table>
+                    </table>
+                <ul class="nav nav-pills">
+                    <li th:class="${currentPage==status.index? 'active' : ''}"  th:each="page,status:${pages}">
+                        <a th:href="@{/index(page=${status.index})} "  th:text="${status.index} "></a>
+                    </li>
+                </ul>
 
             </div>
         </div>
