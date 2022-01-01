@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Equipes</title>
+</head>
+<body>
+    <div class="card">
+        <h2 class="card-header bg-primary text-center" >Les Equipes</h2>
+        <div class="card-body">
+            <a th:href="@{/addequipe}" class="btn btn-primary m-1">Ajouter un Equipe</a>
+            <table class="table  ">
+                <thead>
+                <tr class="table-dark ">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom Equipe</th>
+                    <th scope="col">Ville de Equipe</th>
+                    <th scope="col" >Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="equi:${lesEquipes}" class="table-secondary">
+                    <td th:text="${equi.idEquipe}">
+                    <td th:text="${equi.nomEquipe}">
+                    <td th:text="${equi.paysEquipe}">
+                    <td th:text="Delete">
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

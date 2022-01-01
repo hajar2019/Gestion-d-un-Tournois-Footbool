@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Arbitres</title>
+</head>
+<body>
+    <table class="table  ">
+        <thead>
+        <tr class="table-dark ">
+            <th scope="col">ID</th>
+            <th scope="col">Nom Arbitre</th>
+            <th scope="col">Pays</th>
+            <th scope="col" >Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="arbi:${lesArbitres}" class="table-secondary">
+            <td th:text="${arbi.idArbitre}">
+            <td th:text="${arbi.nomArbitre}">
+            <td th:text="${arbi.nationaliteArbitre}">
+            <td th:text="Delete">
+        </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>

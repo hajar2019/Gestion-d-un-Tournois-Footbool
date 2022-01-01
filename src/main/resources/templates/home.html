@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Acceuil</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:void(0)">CAN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/equipe}">Equipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Joueurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/arbitre}">arbitre</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <table class="table  ">
+        <thead>
+            <tr >
+                <th scope="col">ID</th>
+                <th scope="col">Equipe1</th>
+                <th scope="col">Equipe2</th>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Arbitre</th>
+                <th scope="col">Stade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mat:${lesMatchs}" >
+                <td th:text="${mat.idMatch}"></td>
+                <td th:text="${mat.dateMatch}"></td>
+                <td th:text="${mat.arbitre.nomArbitre}"></td>
+                <td th:text="${mat.dateMatch}"></td>
+                
+                <td th:text="${mat.heureMatch}"></td>
+                <td th:text="${mat.arbitre.nomArbitre}"></td>
+                <td th:text="${mat.stade.nomStade}"></td>
+            </tr>
+    
+        </tbody>
+    </table>
+</body>
+
+</html>

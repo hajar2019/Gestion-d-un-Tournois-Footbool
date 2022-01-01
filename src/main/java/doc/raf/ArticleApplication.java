@@ -1,7 +1,6 @@
 package doc.raf;
 
 import doc.raf.dao.ProduitReposotory;
-import doc.raf.entities.Produits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
