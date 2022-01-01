@@ -3,6 +3,8 @@ package doc.raf.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import doc.raf.dao.StadeRepository;
@@ -10,7 +12,7 @@ import doc.raf.entities.Stade;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ContStade {
     @Autowired
     StadeRepository stadRepo;
@@ -20,8 +22,14 @@ public class ContStade {
     //     return stadRepo.save(stade);
     // }
 
+    @GetMapping("/stade")
+    public String getAllEquipe(Model model){
+        List<Stade> stades = stadRepo.findAll();
+        model.addAttribute("lesStades",stades);
+        return "stade";
+    }
     @GetMapping("/stades")
-    public List<Stade> getAllEquipe(){
+    public List<Stade> getEquipe(){
         return stadRepo.findAll();
     }
 

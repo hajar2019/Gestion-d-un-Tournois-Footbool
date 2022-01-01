@@ -5,28 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
-    <title>Equipes</title>
+    <title>Stade</title>
 </head>
 <body>
     <div layout:fragment="content">
         <div class="card">
-            <h2 class="card-header bg-primary text-center" >Les Equipes</h2>
+            <h2 class="card-header bg-primary text-center" >Les Stades</h2>
             <div class="card-body">
-                <a th:href="@{/addequipe}" class="btn btn-primary m-1">Ajouter un Equipe</a>
+                <a th:href="@{/addstade}" class="btn btn-primary m-1">Ajouter un Equipe</a>
                 <table class="table  ">
                     <thead>
                     <tr class="table-dark ">
                         <th scope="col">ID</th>
-                        <th scope="col">Nom Equipe</th>
-                        <th scope="col">Ville de Equipe</th>
+                        <th scope="col">Nom Stade</th>
+                        <th scope="col">Ville du Stade</th>
                         <th scope="col" >Options</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="equi:${lesEquipes}" class="table-secondary">
-                        <td th:text="${equi.idEquipe}">
-                        <td th:text="${equi.nomEquipe}">
-                        <td th:text="${equi.paysEquipe}">
+                    <tr th:each="sta:${lesStades}" class="table-secondary">
+                        <td th:text="${sta.idStade}">
+                        <td th:text="${sta.nomStade}">
+                        <td th:text="${sta.villeStade}">
                         <td th:text="Delete">
                     </tr>
 

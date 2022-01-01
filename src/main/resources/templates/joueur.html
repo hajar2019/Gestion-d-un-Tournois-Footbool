@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Joueurs</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="card">
+        <h2 class="card-header bg-primary text-center" >Les Joueurs</h2>
+        <div class="card-body">
+            <a th:href="@{/addjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+            <table class="table  ">
+                <thead>
+                <tr class="table-dark ">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom Joueur</th>
+                    <th scope="col">Poste du Joueur</th>
+                    <th scope="col">Equipe du Joueur</th>
+                    <th scope="col" >Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="jou:${lesJoueur}" class="table-secondary">
+                    <td th:text="${jou.idJoueur}">
+                    <td th:text="${jou.nomJoueur}">
+                    <td th:text="${jou.posteJoueur}">
+                    <td th:text="${jou.equipes.nomEquipe}">
+                    <td th:text="Delete">
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
