@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
@@ -10,13 +11,13 @@
 <body>
 <div layout:fragment="content">
     <div class="card">
-        <h2 class="card-header bg-primary text-center" >Les Joueurs</h2>
+        <h2 class="card-header text-center" >Les Joueurs</h2>
         <div class="card-body">
            
             <div class="d-flex flex-row justify-content-between " >
-                <a th:href="@{/addjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+                <a th:href="@{/newjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
                 <form th:action="@{/joueur}" method="get" >
-                    <input  type="text" placeholder="Search" name="motCle">
+                    <input  type="text" placeholder="Search" th:value="${motCle}" name="motCle">
                     <button class="btn btn-primary" type="submit"  >chercher</button>
                 </form>
             </div>
@@ -37,7 +38,10 @@
                     <td th:text="${jou.nomJoueur}">
                     <td th:text="${jou.posteJoueur}">
                     <td th:text="${jou.equipes.nomEquipe}">
-                    <td th:text="Delete">
+                    <td > 
+                        <a th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
+                        <a  class="btn btn-success">Edit</a>
+                    </td>
                 </tr>
 
                 </tbody>
@@ -47,7 +51,7 @@
                     <li class="page-item"><a class="page-link" href="#">Page</a></li>
 
                     <li th:each="page,status:${pages}" th:class="${currentPage==status.index? 'page-item active' : 'page-item'}">
-                        <a class="page-link" th:text="${status.index} " th:href="@{/joueur(page=${status.index})} "></a>
+                        <a class="page-link" th:text="${status.index} " th:href="@{/joueur(page=${status.index},motCle=${motCle})} "></a>
                     </li>
 
 

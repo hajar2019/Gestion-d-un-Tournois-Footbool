@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,9 +17,9 @@ public class Equipe implements Serializable {
     private Long idEquipe;
     private String nomEquipe;
     private String paysEquipe;
-    @JsonManagedReference("joueur-equipe")
-    @OneToMany(mappedBy = "equipes",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Joueur> joueurs;
+    //@JsonManagedReference("joueur-equipe")
+    @OneToMany(mappedBy = "equipes",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Joueur> joueurs = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany(mappedBy = "equipes",fetch = FetchType.LAZY)

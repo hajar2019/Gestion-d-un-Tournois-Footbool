@@ -47,16 +47,43 @@ public class ContJoueur {
         final Joueur updateJoueur = joueRepo.save(joueur1);
         return ResponseEntity.ok(updateJoueur);
     }
-        /// RECUPERER LES JOUEUR
+        /// RECUPERER LES JOUEUR 0
 
     @GetMapping("/joueur")
-    public String AllJoueur(Model model,@RequestParam(name = "page",defaultValue = "0") int page){
-        Page<Joueur> pagesJoueurs = joueRepo.findAll(PageRequest.of(page,5));
+    public String AllJoueur(Model model,@RequestParam(name = "page",defaultValue = "0") int page,
+                                        @RequestParam(name = "motCle",defaultValue = "") String mc){
+        Page<Joueur> pagesJoueurs = joueRepo.findByNomJoueurContains(mc,PageRequest.of(page,5));
         model.addAttribute("lesJoueurs",pagesJoueurs.getContent());
         model.addAttribute("pages",new int[pagesJoueurs.getTotalPages()]);
         model.addAttribute("currentPage",page);
+        model.addAttribute("motCle",mc);
+
         return "joueur";
     }
+    ////////// SUPPRIMER UN JOUR PAR SON ID 0
+
+    @GetMapping(value = "/delete")
+    public String delete(Long id, int page, String motCle) {
+        joueRepo.deleteById(id);
+        return "redirect:/joueur?page=" + page + "&motCle=" + motCle;
+    }
+    /// Ajouter un joueur
+
+    @GetMapping(value = "/newjoueur")
+    public String showFormJoueur(Model model){
+        model.addAttribute("joueur",new Joueur());
+        List<Equipe> equipeList = equiRepo.findAll();
+        model.addAttribute("listEquipe",equipeList);
+        return "addJoueur";
+    }
+
+    @PostMapping(value = "/regiterjoueur")
+    public String saveJoueur(Joueur joueur){
+        joueRepo.save(joueur);
+        return "redirect:/joueur";
+    }
+
+
 
     @GetMapping("/joueurs")
     public List<Joueur> getAllJoueur(){

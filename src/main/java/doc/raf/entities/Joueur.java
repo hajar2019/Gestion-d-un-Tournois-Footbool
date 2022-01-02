@@ -17,7 +17,7 @@ public class Joueur implements Serializable {
     private String nomJoueur;
     private String posteJoueur;
 
-    @JsonBackReference(value = "joueur-equipe")
+    //@JsonBackReference(value = "joueur-equipe")
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     @JoinColumn(name = "equipe_id")
     private Equipe equipes;

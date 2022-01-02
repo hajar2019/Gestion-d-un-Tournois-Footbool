@@ -1,6 +1,7 @@
 package doc.raf.controllers;
 
 
+import doc.raf.entities.Joueur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,21 +18,23 @@ public class ContEquipe {
     @Autowired
     EquipeRepository equiRepo;
 
-    ///INSERER UN EQUIPE OU AVEC CES JOUEURS DANS LA BASE DES DONNES
+    ///INSERER UN EQUIPE OU AVEC CES JOUEURS DANS LA BASE DES DONNES 0
 
     @PostMapping("/registerequipe")
-    public Equipe saveEquipe(@ModelAttribute("Equipe") Equipe equipe){
-        return equiRepo.save(equipe);
+    public String saveEquipe( Equipe equipe){
+        equiRepo.save(equipe);
+        return "redirect:/equipe";
     }
 
-    /// ajouter equipe
+    /// ajouter equipe 0
+
 
     @GetMapping(value = "/addequipe")
-    public String addEquipe(){
-
+    public String showFormEquipe(Model model){
+        model.addAttribute("equipe",new Equipe());
         return "addEquipe";
     }
-    /// RECUPER TOUS LES EQUIPES
+    /// RECUPER TOUS LES EQUIPES 0
 
     @GetMapping(value = "/equipe")
     public String gettAllEquipe(Model model){
