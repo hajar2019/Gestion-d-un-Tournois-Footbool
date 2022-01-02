@@ -5,7 +5,6 @@
       layout:decorate="layout">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
     <title>Equipes</title>
 </head>
 <body>
@@ -28,7 +27,11 @@
                         <td th:text="${equi.idEquipe}">
                         <td th:text="${equi.nomEquipe}">
                         <td th:text="${equi.paysEquipe}">
-                        <td th:text="Delete">
+                        <td style="align-self: center;max-width: 50px">
+                            <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
+                            <a th:href="@{/deleteEquipe(id=${equi.idEquipe})}" class="btn btn-danger align-self-center">Delete</a>
+                            <a th:href="@{/editEquipe(id=${equi.idEquipe})}" class="btn btn-success align-self-center">Edit</a>
+                        </td>
                     </tr>
 
                     </tbody>

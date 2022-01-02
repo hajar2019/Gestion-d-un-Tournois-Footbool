@@ -6,6 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import doc.raf.dao.EquipeRepository;
@@ -52,7 +54,7 @@ public class ContJoueur {
     @GetMapping("/joueur")
     public String AllJoueur(Model model,@RequestParam(name = "page",defaultValue = "0") int page,
                                         @RequestParam(name = "motCle",defaultValue = "") String mc){
-        Page<Joueur> pagesJoueurs = joueRepo.findByNomJoueurContains(mc,PageRequest.of(page,5));
+        Page<Joueur> pagesJoueurs = joueRepo.findByNomJoueurContains(mc,PageRequest.of(page,6));
         model.addAttribute("lesJoueurs",pagesJoueurs.getContent());
         model.addAttribute("pages",new int[pagesJoueurs.getTotalPages()]);
         model.addAttribute("currentPage",page);
@@ -78,7 +80,7 @@ public class ContJoueur {
     }
 
     @PostMapping(value = "/regiterjoueur")
-    public String saveJoueur(Joueur joueur){
+    public String saveJoueur( Joueur joueur){
         joueRepo.save(joueur);
         return "redirect:/joueur";
     }

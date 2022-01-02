@@ -6,16 +6,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Equipe</title>
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Edit Equipe</title>
 </head>
 <body>
     <div layout:fragment="content" class="container text-center">
 
         <div>
-            <h2 class="card-header bg-primary text-center text-light" >Ajouer un Equipe</h2>
+            <h2 class="card-header bg-primary text-center text-light" >Modifier un Equipe</h2>
         </div>
         <form th:action="@{/registerequipe}" th:object="${equipe}" method="post"
               style="max-width: 600px;margin: 0 auto">
+            <input type="hidden" th:field="*{idEquipe}" th:value="${equipe.idEquipe}"/>
             <div class="mt-3 row">
                 <label  class="col-sm-4 col-form-label">Nom Equipe</label>
                 <div class="col-sm-8">

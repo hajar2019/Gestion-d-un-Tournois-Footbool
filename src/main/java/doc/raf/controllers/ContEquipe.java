@@ -3,6 +3,7 @@ package doc.raf.controllers;
 
 import doc.raf.entities.Joueur;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,26 @@ public class ContEquipe {
         model.addAttribute("lesEquipes",equipeList);
         return "equipe";
     }
+        ///######## SUPPRIMER UN EQUIPE PAR SON ID 0
+
+    @GetMapping(value = "/deleteEquipe")
+    public String deleteById(Long id) {
+        equiRepo.deleteById(id);
+        return "redirect:/equipe";
+    }
+
+        ///######## Edit UN EQUIPE PAR SON ID 0
+
+    @GetMapping(value = "/editEquipe")
+    public String showEditEquipe(Model model, Long id ){
+        Equipe equipe = equiRepo.findById(id).get();
+        model.addAttribute("equipe",equipe);
+        return "equipeEdit";
+    }
+
         ///######## SUPPRIMER UN EQUIPE PAR SON ID
+
+
 
     @DeleteMapping("/equipes/delete/{idEquipe}")
     public void deletEquipe(@PathVariable Long idEquipe){

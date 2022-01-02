@@ -2,6 +2,7 @@ package doc.raf.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquipe;
+    @Column(length = 45, nullable = false,unique = true)
     private String nomEquipe;
     private String paysEquipe;
     //@JsonManagedReference("joueur-equipe")

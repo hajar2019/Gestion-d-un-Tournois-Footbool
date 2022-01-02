@@ -1,23 +1,28 @@
 package doc.raf.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Data
+@Validated
 public class Joueur implements Serializable {
 
     @Column(nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idJoueur;
+    @Column(length = 20, nullable = false,unique = true)
     private String nomJoueur;
     private String posteJoueur;
 
     //@JsonBackReference(value = "joueur-equipe")
+
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     @JoinColumn(name = "equipe_id")
     private Equipe equipes;
