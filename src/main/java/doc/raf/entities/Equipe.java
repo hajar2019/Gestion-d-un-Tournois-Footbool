@@ -23,7 +23,7 @@ public class Equipe implements Serializable {
     @OneToMany(mappedBy = "equipes",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Joueur> joueurs = new ArrayList<>();
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToMany(mappedBy = "equipes",fetch = FetchType.LAZY)
     private List<Match> matches;
 
@@ -37,6 +37,10 @@ public class Equipe implements Serializable {
         this.paysEquipe = paysEquipe;
         this.joueurs = joueurs;
         this.matches = matches;
+    }
+    @Override
+    public String toString(){
+        return String.format(nomEquipe);
     }
 
     public Long getIdEquipe() {

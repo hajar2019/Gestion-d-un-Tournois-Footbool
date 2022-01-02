@@ -30,6 +30,10 @@ public class Arbitre implements Serializable {
         super();
     }
 
+    @Override
+    public String toString() {
+        return String.format(nomArbitre);
+    }
 
     public Long getIdArbitre() {
         return idArbitre;

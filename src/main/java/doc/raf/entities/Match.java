@@ -55,7 +55,10 @@ public class Match implements Serializable {
         super();
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format(equipes + " le " + dateMatch +" à "+ heureMatch + " au stade " + stade +", arbitre : "+ arbitre);
+    }
 
     public Long getIdMatch() {
         return idMatch;

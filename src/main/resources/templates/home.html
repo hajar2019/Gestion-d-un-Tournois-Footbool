@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
@@ -14,8 +15,7 @@
             <thead>
                 <tr >
                     <th scope="col">ID</th>
-                    <th scope="col">Equipe1</th>
-                    <th scope="col">Equipe2</th>
+                    <th scope="col">Equipees</th>
                     <th scope="col">Date</th>
                     <th scope="col">Heure</th>
                     <th scope="col">Arbitre</th>
@@ -25,10 +25,8 @@
             <tbody>
                 <tr th:each="mat:${lesMatchs}" >
                     <td th:text="${mat.idMatch}"></td>
+                    <td th:text="${mat.equipes}"></td>
                     <td th:text="${mat.dateMatch}"></td>
-                    <td th:text="${mat.arbitre.nomArbitre}"></td>
-                    <td th:text="${mat.dateMatch}"></td>
-
                     <td th:text="${mat.heureMatch}"></td>
                     <td th:text="${mat.arbitre.nomArbitre}"></td>
                     <td th:text="${mat.stade.nomStade}"></td>

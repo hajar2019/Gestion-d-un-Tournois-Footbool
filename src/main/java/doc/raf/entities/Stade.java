@@ -18,7 +18,7 @@ public class Stade implements Serializable {
     private Long idStade;
     private String nomStade;
     private String villeStade;
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "stade",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Match> matches;
 
@@ -30,6 +30,11 @@ public class Stade implements Serializable {
         this.nomStade = nomStade;
         this.villeStade = villeStade;
         this.matches = matches;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(nomStade);
     }
 
     public Stade() {
@@ -68,11 +73,4 @@ public class Stade implements Serializable {
         this.matches = matches;
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "idStade = " + idStade + ", " +
-                "nomStade = " + nomStade + ", " +
-                "villeStade = " + villeStade + ")";
-    }
 }

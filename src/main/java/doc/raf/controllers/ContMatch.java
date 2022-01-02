@@ -57,6 +57,8 @@ public class ContMatch {
     public String getAllMatch(Model model){
         List<Match> matchs = matchRepo.findAll();
         model.addAttribute("lesMatchs",matchs);
+        String match = matchs.toString();
+        model.addAttribute("equipe",match);
         return "home";
     }
 

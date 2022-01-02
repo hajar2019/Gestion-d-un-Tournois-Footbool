@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
@@ -19,6 +20,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nom Stade</th>
                         <th scope="col">Ville du Stade</th>
+                        <th scope="col">Matchs</th>
                         <th scope="col" >Options</th>
                     </tr>
                     </thead>
@@ -27,6 +29,7 @@
                         <td th:text="${sta.idStade}">
                         <td th:text="${sta.nomStade}">
                         <td th:text="${sta.villeStade}">
+                        <td th:text="${sta.matches}">
                         <td th:text="Delete">
                     </tr>
 

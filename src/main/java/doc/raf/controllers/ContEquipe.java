@@ -35,6 +35,7 @@ public class ContEquipe {
         model.addAttribute("equipe",new Equipe());
         return "addEquipe";
     }
+
     /// RECUPER TOUS LES EQUIPES 0
 
     @GetMapping(value = "/equipe")
@@ -43,6 +44,7 @@ public class ContEquipe {
         model.addAttribute("lesEquipes",equipeList);
         return "equipe";
     }
+
         ///######## SUPPRIMER UN EQUIPE PAR SON ID 0
 
     @GetMapping(value = "/deleteEquipe")
@@ -58,26 +60,6 @@ public class ContEquipe {
         Equipe equipe = equiRepo.findById(id).get();
         model.addAttribute("equipe",equipe);
         return "equipeEdit";
-    }
-
-        ///######## SUPPRIMER UN EQUIPE PAR SON ID
-
-
-
-    @DeleteMapping("/equipes/delete/{idEquipe}")
-    public void deletEquipe(@PathVariable Long idEquipe){
-        equiRepo.deleteById(idEquipe);
-    }
-
-    ///MODIFIER UN EQUIPE PAR SON ID
-
-    @PutMapping("/equipes/{idEquipe}")
-    public ResponseEntity<Equipe> updateEquipe(@RequestBody Equipe equipe,@PathVariable Long idEquipe){
-        Equipe equipe1 = equiRepo.findById(idEquipe).orElseThrow(()->new RuntimeException("L'equipe n'existe pas"));
-        equipe1.setNomEquipe(equipe.getNomEquipe());
-        equipe1.setPaysEquipe(equipe.getPaysEquipe());
-        final Equipe updateEquipe = equiRepo.save(equipe1);
-        return ResponseEntity.ok(updateEquipe);
     }
 
     @GetMapping("/equipe/{pays}")
