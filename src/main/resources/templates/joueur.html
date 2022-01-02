@@ -12,7 +12,15 @@
     <div class="card">
         <h2 class="card-header bg-primary text-center" >Les Joueurs</h2>
         <div class="card-body">
-            <a th:href="@{/addjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+           
+            <div class="d-flex flex-row justify-content-between " >
+                <a th:href="@{/addjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+                <form th:action="@{/joueur}" method="get" >
+                    <input  type="text" placeholder="Search" name="motCle">
+                    <button class="btn btn-primary" type="submit"  >chercher</button>
+                </form>
+            </div>
+
             <table class="table  ">
                 <thead>
                 <tr class="table-dark ">
@@ -24,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="jou:${lesJoueur}" class="table-secondary">
+                <tr th:each="jou:${lesJoueurs}" class="table-secondary">
                     <td th:text="${jou.idJoueur}">
                     <td th:text="${jou.nomJoueur}">
                     <td th:text="${jou.posteJoueur}">
@@ -34,6 +42,17 @@
 
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Page</a></li>
+
+                    <li th:each="page,status:${pages}" th:class="${currentPage==status.index? 'page-item active' : 'page-item'}">
+                        <a class="page-link" th:text="${status.index} " th:href="@{/joueur(page=${status.index})} "></a>
+                    </li>
+
+
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

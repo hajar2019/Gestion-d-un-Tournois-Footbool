@@ -1,6 +1,8 @@
 package doc.raf.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,11 +50,14 @@ public class ContJoueur {
         /// RECUPERER LES JOUEUR
 
     @GetMapping("/joueur")
-    public String AllJoueur(Model model){
-        List<Joueur> joueurs = joueRepo.findAll();
-        model.addAttribute("lesJoueur",joueurs);
+    public String AllJoueur(Model model,@RequestParam(name = "page",defaultValue = "0") int page){
+        Page<Joueur> pagesJoueurs = joueRepo.findAll(PageRequest.of(page,5));
+        model.addAttribute("lesJoueurs",pagesJoueurs.getContent());
+        model.addAttribute("pages",new int[pagesJoueurs.getTotalPages()]);
+        model.addAttribute("currentPage",page);
         return "joueur";
     }
+
     @GetMapping("/joueurs")
     public List<Joueur> getAllJoueur(){
         return joueRepo.findAll();

@@ -7,6 +7,7 @@
     <title>Layout</title>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0)">CAN</a>
@@ -31,18 +32,16 @@
                         <a class="nav-link" th:href="@{/arbitre}">arbitre</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="text" placeholder="Search">
-                    <button class="btn btn-primary" type="button">Search</button>
-                </form>
+
             </div>
         </div>
     </nav>
-    <section>
-        <div layout:fragment="content">
+    <div class="container-fluid">
+        <section>
+            <div layout:fragment="content">
 
-        </div>
-    </section>
-
+            </div>
+        </section>
+    </div>
 </body>
 </html>
