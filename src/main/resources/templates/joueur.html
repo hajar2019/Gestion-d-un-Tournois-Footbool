@@ -39,7 +39,7 @@
                     <td th:text="${jou.equipes.nomEquipe}">
                     <td > 
                         <a th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
-                        <a  class="btn btn-success">Edit</a>
+                        <a th:href="@{/editJoueur(id=${jou.idJoueur})}" class="btn btn-success">Edit</a>
                     </td>
                 </tr>
 

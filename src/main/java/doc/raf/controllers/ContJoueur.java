@@ -84,7 +84,17 @@ public class ContJoueur {
         joueRepo.save(joueur);
         return "redirect:/joueur";
     }
+////Modifier un joueur
 
+    @GetMapping(value = "/editJoueur")
+    public String showEditJoueur(Model model, Long id ){
+        Joueur joueur = joueRepo.findById(id).get();
+        model.addAttribute("joueur",joueur);
+
+        List<Equipe> equipeList = equiRepo.findAll();
+        model.addAttribute("lesEquipes",equipeList);
+        return "joueurEdit";
+    }
 
 
     @GetMapping("/joueurs")
