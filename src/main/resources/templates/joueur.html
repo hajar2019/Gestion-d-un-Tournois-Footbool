@@ -38,7 +38,7 @@
                     <td th:text="${jou.posteJoueur}">
                     <td th:text="${jou.equipes.nomEquipe}">
                     <td > 
-                        <a th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
+                        <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
                         <a th:href="@{/editJoueur(id=${jou.idJoueur})}" class="btn btn-success">Edit</a>
                     </td>
                 </tr>

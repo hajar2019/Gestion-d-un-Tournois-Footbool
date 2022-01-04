@@ -44,7 +44,7 @@
                             <td th:text="${mat.arbitre.nomArbitre}"></td>
                             <td th:text="${mat.stade.nomStade}"></td>
                             <td>
-                                <a th:href="@{/deleteMatch(id=${mat.idMatch})}" class="btn btn-danger">Delete</a>
+                                <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteMatch(id=${mat.idMatch})}" class="btn btn-danger">Delete</a>
                                 <a th:href="@{/matchEdit(id=${mat.idMatch})}" class="btn btn-success">Edit</a>
                             </td>
                         </tr>

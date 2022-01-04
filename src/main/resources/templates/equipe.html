@@ -29,7 +29,7 @@
                         <td th:text="${equi.paysEquipe}">
                         <td style="align-self: center;max-width: 50px">
                             <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
-                            <a th:href="@{/deleteEquipe(id=${equi.idEquipe})}" class="btn btn-danger align-self-center">Delete</a>
+                            <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteEquipe(id=${equi.idEquipe})}" class="btn btn-danger align-self-center">Delete</a>
                             <a th:href="@{/editEquipe(id=${equi.idEquipe})}" class="btn btn-success align-self-center">Edit</a>
                         </td>
                     </tr>

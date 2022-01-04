@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import doc.raf.dao.ArbitreRepository;
 import doc.raf.entities.Arbitre;
+import lombok.val;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ContArbitre {
     public Arbitre saveArbitre(@RequestBody Arbitre arbitre){
         return arbiRepory.save(arbitre);
     }
+ //////////////// Afficher tous les arbitres  ////////////
 
     @GetMapping("/arbitre")
     public String getAllArbitre(Model model){
@@ -28,6 +30,45 @@ public class ContArbitre {
         model.addAttribute("lesArbitres",arbitres);
         return "arbitre";
     }
+
+    //////////////// Fin Afficher tous les arbitres ////////////
+
+    //////////////// Ajouter un arbitres ////////////
+
+    @GetMapping(value = "addArbitre")
+    public String showAddArbitre(Model model){
+        model.addAttribute("arbitre",new Arbitre());
+        return "arbitreAdd";
+    }
+
+    @PostMapping(value = "registerArbitre")
+    public String saveArbitre(Arbitre arbitre ,Long id){
+        arbiRepory.save(arbitre);
+        return "redirect:/arbitre";
+    }
+
+    //////////////// Fin Ajout arbitres ////////////
+
+    //////////////// Delete arbitres ////////////
+
+    @GetMapping(value = "deleteArbitre")
+    public String deleteArbitre(Long id){
+        arbiRepory.deleteById(id);
+        return "redirect:/arbitre";
+    }
+
+    //////////////// Fin Delete arbitres ////////////
+
+    //////////////// Edit arbitres ////////////
+
+    @GetMapping(value = "editArbitre")
+    public String showEditArbitre(Model model,Long id){
+        Arbitre arbitre = arbiRepory.findById(id).get();
+        model.addAttribute("arbitre",arbitre);
+        return "arbitreEdit";
+    }
+
+    //////////////// Fin Edit arbitres ////////////
 
     @PutMapping("/arbitres/{idArbitre}")
     public ResponseEntity<Arbitre> updateArbitre(@RequestBody Arbitre arbitre, @PathVariable Long idArbitre){

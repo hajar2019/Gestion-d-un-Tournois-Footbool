@@ -37,7 +37,7 @@ public class ContJoueur {
     ////////// SUPPRIMER UN JOUR PAR SON ID 0
 
     @GetMapping(value = "/delete")
-    public String delete(Long id, int page, String motCle) {
+    public String deleteJoueur(Long id, int page, String motCle) {
         joueRepo.deleteById(id);
         return "redirect:/joueur?page=" + page + "&motCle=" + motCle;
     }

@@ -32,7 +32,7 @@
                             <td th:text="${sta.matches}">
                             <td style="align-self: center;">
                                 <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
-                                <a th:href="@{/deleteStade(id=${sta.idStade})}"
+                                <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteStade(id=${sta.idStade})}"
                                     class="btn btn-danger ">Delete</a>
                                 <a th:href="@{/stadeEdit(id=${sta.idStade})}"
                                     class="btn btn-success ">Edit</a>
