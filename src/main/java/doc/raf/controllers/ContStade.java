@@ -28,6 +28,48 @@ public class ContStade {
         model.addAttribute("lesStades",stades);
         return "stade";
     }
+
+    ///////// Add stade /////////
+
+    @GetMapping(value = "addStade")
+    public String showAddStade(Model model){
+        model.addAttribute("stade", new Stade());
+
+        return "stadeAdd";
+    }
+
+    @PostMapping(value = "registerStade")
+    public String saveStade(Stade stade){
+        stadRepo.save(stade);
+        return "redirect:/stade";
+    }
+
+    ///////// fin add stade /////////
+
+    ///////// delet  stade /////////
+
+    @GetMapping(value = "deleteStade")
+    public String deleteStade(Long id){
+        stadRepo.deleteById(id);
+        return "redirect:/stade";
+    }
+
+    ///////// Fin delete  stade /////////
+
+    ///////// Modifier un  stade /////////
+
+    @GetMapping(value = "stadeEdit")
+    public String showEditStade(Model model,Long id){
+        Stade stade = stadRepo.findById(id).get();
+        model.addAttribute("stade", stade);
+        return "stadeEdit";
+    }
+
+    ///////// Fin Modification d'un  stade /////////
+
+
+
+
     @GetMapping("/stades")
     public List<Stade> getEquipe(){
         return stadRepo.findAll();
