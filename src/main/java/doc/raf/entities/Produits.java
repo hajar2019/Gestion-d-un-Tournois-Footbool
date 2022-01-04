@@ -53,7 +53,7 @@ public class Produits implements Serializable {
     }
 
     public void setDesignationProd(String designationProd) {
-        designationProd = designationProd;
+        this.designationProd = designationProd;
     }
 
     public double getPrixProd() {

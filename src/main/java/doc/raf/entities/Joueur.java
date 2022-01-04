@@ -1,7 +1,5 @@
 package doc.raf.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 

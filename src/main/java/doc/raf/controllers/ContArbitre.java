@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import doc.raf.dao.ArbitreRepository;
 import doc.raf.entities.Arbitre;
-import lombok.val;
 
 import java.util.List;
 
