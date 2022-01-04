@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html lang="fr"
-      xmlns:th="http://www.thymeleaf.org" xmlns:page
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
     <title>Matchs</title>
 </head>
+
 <body>
-    <div layout:fragment="content" >
+    <div layout:fragment="content">
+        <div class="card">
+            <h2 class="card-header bg-primary text-white text-center">Les Matchs</h2>
+            <div class="card-body">
 
-        <table class="table  ">
-            <thead>
-                <tr >
-                    <th scope="col">ID</th>
-                    <th scope="col">Equipees</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Heure</th>
-                    <th scope="col">Arbitre</th>
-                    <th scope="col">Stade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="mat:${lesMatchs}" >
-                    <td th:text="${mat.idMatch}"></td>
-                    <td th:text="${mat.equipes}"></td>
-                    <td th:text="${mat.dateMatch}"></td>
-                    <td th:text="${mat.heureMatch}"></td>
-                    <td th:text="${mat.arbitre.nomArbitre}"></td>
-                    <td th:text="${mat.stade.nomStade}"></td>
-                </tr>
+                <div class="d-flex flex-row justify-content-between ">
+                    <a th:href="@{/matchAdd}" class="btn btn-primary m-1">Ajouter un Match</a>
+                    <form th:action="@{/joueur}" method="get">
+                        <input type="text" placeholder="Search" th:value="${motCle}" name="motCle">
+                        <button class="btn btn-primary" type="submit">chercher</button>
+                    </form>
+                </div>
 
-            </tbody>
-        </table>
+
+                <table class="table  ">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Equipees</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Heure</th>
+                            <th scope="col">Arbitre</th>
+                            <th scope="col">Stade</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="mat:${lesMatchs}">
+                            <td th:text="${mat.idMatch}"></td>
+                            <td th:text="${mat.equipes}"></td>
+                            <td th:text="${mat.dateMatch}"></td>
+                            <td th:text="${mat.heureMatch}"></td>
+                            <td th:text="${mat.arbitre.nomArbitre}"></td>
+                            <td th:text="${mat.stade.nomStade}"></td>
+                            <td>
+                                <a th:href="@{/deleteMatch(id=${mat.idMatch})}" class="btn btn-danger">Delete</a>
+                                <a th:href="@{/matchEdit(id=${mat.idMatch})}" class="btn btn-success">Edit</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 

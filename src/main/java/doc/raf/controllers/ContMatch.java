@@ -52,6 +52,7 @@ public class ContMatch {
 
         return matchRepo.save(match1);
     }
+///////////////////// Afficher tout les matchs
 
     @GetMapping(value = "/home")
     public String getAllMatch(Model model){
@@ -62,10 +63,56 @@ public class ContMatch {
         return "home";
     }
 
-    @GetMapping("/matchs")
-    public List<Match> getAllMatch() {
-        return matchRepo.findAll();
+    ////////// SUPPRIMER UN JOUR PAR SON ID 0
+
+    @GetMapping(value = "/deleteMatch")
+    public String deleteMatch(Long id) {
+        matchRepo.deleteById(id);
+        return "redirect:/home?";
     }
+
+    
+    ///////////// Ajouter un match :affichage du formulaire de saisis avec les listes des attribut du match ///////////
+
+    @GetMapping(value = "/matchAdd")
+    public String showEditMatch(Model model){
+        model.addAttribute("match",new Match());
+        List<Equipe> equipes = equiRepo.findAll();
+        model.addAttribute("lesEquipes" ,equipes);
+        List<Arbitre> arbitres = arbRepo.findAll();
+        model.addAttribute("lesArbitres",arbitres);
+        List<Stade> stades = stadRepo.findAll();
+        model.addAttribute("lesStades", stades);
+        return "matchAdd";
+    }
+
+    @PostMapping(value = "/regiterMatch")
+    public String saveJoueur(Match match) {
+        matchRepo.save(match);
+        return "redirect:/home";
+    }
+    ///////////// fin Ajouter un match  ///////////
+
+    //// Modifier un joueur :on lui envoie les données 
+    ////d'un match et on a utilisé la même methode d'enregistement pour enregistrer le match modifier
+
+    @GetMapping(value = "/matchEdit")
+    public String showEditJoueur(Model model, Long id) {
+        Match match = matchRepo.findById(id).get();
+        model.addAttribute("match", match);
+
+        List<Equipe> equipes = equiRepo.findAll();
+        model.addAttribute("lesEquipes", equipes);
+        List<Arbitre> arbitres = arbRepo.findAll();
+        model.addAttribute("lesArbitres", arbitres);
+        List<Stade> stades = stadRepo.findAll();
+        model.addAttribute("lesStades", stades);
+        return "matchEdit";
+    }
+
+    ///////////// fin modification d'un match  ///////////
+
+
 
     @DeleteMapping("/match/{idMatch}")
     public void deletMatch(@PathVariable Long idMatch){
