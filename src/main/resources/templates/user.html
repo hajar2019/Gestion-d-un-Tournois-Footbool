@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>users</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="card">
+            <h2 class="card-header bg-primary text-center" >Les Utilisateurs</h2>
+            <div class="card-body">
+                <a th:href="@{/userAdd}" class="btn btn-primary m-1">Ajouter un Utilisateur</a>
+                <table class="table  ">
+                    <thead>
+                    <tr class="table-dark ">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom User</th>
+                        <th scope="col">Roles User</th>
+                        <th scope="col" >Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user:${lesUsers}" class="table-secondary">
+                        <td th:text="${user.idUser}">
+                        <td th:text="${user.username}">
+                        <td th:text="${user.role}">
+                        <td style="align-self: center;max-width: 50px">
+                            <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
+                            <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteUser(id=${user.idUser})}" class="btn btn-danger align-self-center">Delete</a>
+                            <a th:href="@{/editUser(id=${user.idUser})}" class="btn btn-success align-self-center">Edit</a>
+                         </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

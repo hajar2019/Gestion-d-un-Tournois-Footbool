@@ -54,7 +54,7 @@ public class ContMatch {
     }
 ///////////////////// Afficher tout les matchs
 
-    @GetMapping(value = "/home")
+    @GetMapping(value ={ "/home","/"} )
     public String getAllMatch(Model model){
         List<Match> matchs = matchRepo.findAll();
         model.addAttribute("lesMatchs",matchs);
