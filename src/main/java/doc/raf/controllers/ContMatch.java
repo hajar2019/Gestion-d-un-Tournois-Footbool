@@ -74,9 +74,10 @@ public class ContMatch {
     
     ///////////// Ajouter un match :affichage du formulaire de saisis avec les listes des attribut du match ///////////
 
-    @GetMapping(value = "/matchAdd")
+    @GetMapping(value = "/addMatch")
     public String showEditMatch(Model model){
         model.addAttribute("match",new Match());
+        
         List<Equipe> equipes = equiRepo.findAll();
         model.addAttribute("lesEquipes" ,equipes);
         List<Arbitre> arbitres = arbRepo.findAll();
@@ -96,8 +97,8 @@ public class ContMatch {
     //// Modifier un joueur :on lui envoie les données 
     ////d'un match et on a utilisé la même methode d'enregistement pour enregistrer le match modifier
 
-    @GetMapping(value = "/matchEdit")
-    public String showEditJoueur(Model model, Long id) {
+    @GetMapping(value = "/editMatch")
+    public String EditMatch(Model model, Long id) {
         Match match = matchRepo.findById(id).get();
         model.addAttribute("match", match);
 

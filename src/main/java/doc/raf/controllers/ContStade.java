@@ -58,7 +58,7 @@ public class ContStade {
 
     ///////// Modifier un  stade /////////
 
-    @GetMapping(value = "stadeEdit")
+    @GetMapping(value = "editStade")
     public String showEditStade(Model model,Long id){
         Stade stade = stadRepo.findById(id).get();
         model.addAttribute("stade", stade);

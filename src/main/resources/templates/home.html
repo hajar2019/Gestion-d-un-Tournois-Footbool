@@ -15,7 +15,7 @@
             <div class="card-body">
 
                 <div class="d-flex flex-row justify-content-between ">
-                    <a th:href="@{/matchAdd}" class="btn btn-primary m-1">Ajouter un Match</a>
+                    <a th:href="@{/addMatch}" class="btn btn-primary m-1">Ajouter un Match</a>
                     <form th:action="@{/joueur}" method="get">
                         <input type="text" placeholder="Search" th:value="${motCle}" name="motCle">
                         <button class="btn btn-primary" type="submit">chercher</button>
@@ -45,7 +45,7 @@
                             <td th:text="${mat.stade.nomStade}"></td>
                             <td>
                                 <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteMatch(id=${mat.idMatch})}" class="btn btn-danger">Delete</a>
-                                <a th:href="@{/matchEdit(id=${mat.idMatch})}" class="btn btn-success">Edit</a>
+                                <a th:href="@{/editMatch(id=${mat.idMatch})}" class="btn btn-success">Edit</a>
                             </td>
                         </tr>
 

@@ -27,7 +27,7 @@ public class ContUser {
     }
     //////////////// Add User ////////
 
-    @GetMapping(value = "/userAdd")
+    @GetMapping(value = "/addUser")
     public String showAddUser(Model model) {
         model.addAttribute("user", new User());
         return "userAdd";

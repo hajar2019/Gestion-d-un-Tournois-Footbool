@@ -14,10 +14,10 @@
         <div class="card-body">
            
             <div class="d-flex flex-row justify-content-between " >
-                <a th:href="@{/newjoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+                <a th:href="@{/addJoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
                 <form th:action="@{/joueur}" method="get" >
                     <input  type="text" placeholder="Search" th:value="${motCle}" name="motCle">
-                    <button class="btn btn-primary" type="submit"  >chercher</button>
+                    <button class="btn btn-primary" type="submit">chercher</button>
                 </form>
             </div>
 

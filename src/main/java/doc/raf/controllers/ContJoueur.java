@@ -44,7 +44,7 @@ public class ContJoueur {
 
     /// Ajouter un joueur
 
-    @GetMapping(value = "/newjoueur")
+    @GetMapping(value = "/addJoueur")
     public String showFormJoueur(Model model){
         model.addAttribute("joueur",new Joueur());
         List<Equipe> equipeList = equiRepo.findAll();
