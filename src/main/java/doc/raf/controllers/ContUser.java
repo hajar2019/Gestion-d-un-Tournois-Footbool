@@ -3,6 +3,7 @@ package doc.raf.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,8 @@ public class ContUser {
 
     @PostMapping("/registerUser")
     public String saveEquipe(User user) {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
+        String encoded = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(encoded);
         userRepo.save(user);
         return "redirect:/user";
     }
@@ -57,5 +58,17 @@ public class ContUser {
         User user = userRepo.findById(id).get();
         model.addAttribute("user", user);
         return "userEdit";
+    }
+
+    @GetMapping(value = "userLogin")
+    public String loginUser() {
+
+        return "userLogin";
+    }
+
+    @GetMapping(value = "userRegister")
+    public String registerNewUser() {
+
+        return "userRegister";
     }
 }

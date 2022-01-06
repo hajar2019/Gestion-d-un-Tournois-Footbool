@@ -19,6 +19,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nom User</th>
                         <th scope="col">Roles User</th>
+                        <th scope="col">Etat User</th>
                         <th scope="col" >Options</th>
                     </tr>
                     </thead>
@@ -27,6 +28,7 @@
                         <td th:text="${user.idUser}">
                         <td th:text="${user.username}">
                         <td th:text="${user.role}">
+                        <td th:text="${user.active}">
                         <td style="align-self: center;max-width: 50px">
                             <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
                             <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteUser(id=${user.idUser})}" class="btn btn-danger align-self-center">Delete</a>

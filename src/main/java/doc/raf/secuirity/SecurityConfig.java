@@ -26,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("doc").password("{noop}2002").roles("USER");
        
         // auth.jdbcAuthentication().dataSource(DataSource)
-        // .usersByUsernameQuery("select username,active,role from user where idUser=?") 
-        // .authoritiesByUsernameQuery("select username, role from user where idUser=?")
+        // .usersByUsernameQuery("select username,active from user where username=?") 
+        // .authoritiesByUsernameQuery("select username, role from user where username=?")
         // .passwordEncoder(new BCryptPasswordEncoder());
     }
 
