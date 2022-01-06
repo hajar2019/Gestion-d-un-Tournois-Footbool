@@ -12,14 +12,14 @@
         <div class="card">
             <h2 class="card-header bg-primary text-center" >Les Equipes</h2>
             <div class="card-body">
-                <a th:href="@{/addequipe}" class="btn btn-primary m-1">Ajouter un Equipe</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addequipe}" class="btn btn-primary m-1">Ajouter un Equipe</a>
                 <table class="table  ">
                     <thead>
                     <tr class="table-dark ">
                         <th scope="col">ID</th>
                         <th scope="col">Nom Equipe</th>
                         <th scope="col">Ville de Equipe</th>
-                        <th scope="col" >Options</th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" >Options</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,7 +27,7 @@
                         <td th:text="${equi.idEquipe}">
                         <td th:text="${equi.nomEquipe}">
                         <td th:text="${equi.paysEquipe}">
-                        <td style="align-self: center;max-width: 50px">
+                        <td sec:authorize="hasRole('ROLE_ADMIN')" style="align-self: center;max-width: 50px">
                             <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
                             <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteEquipe(id=${equi.idEquipe})}" class="btn btn-danger align-self-center">Delete</a>
                             <a th:href="@{/editEquipe(id=${equi.idEquipe})}" class="btn btn-success align-self-center">Edit</a>

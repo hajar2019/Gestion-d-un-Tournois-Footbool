@@ -17,15 +17,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // pour initialiser la securité
     //Pour personnaliser la securite on a besoin de definir deux methodes
     
-    // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+   // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     // @Autowired
     // DataSource DataSource;
     
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = passwordEncoder();
-        auth.inMemoryAuthentication().withUser("raf").password("{noop}2002").roles("ADMIN", "USER");
-        auth.inMemoryAuthentication().withUser("doc").password("{noop}2002").roles("USER");
+        auth.inMemoryAuthentication().withUser("Abdouraouf").password(encoder.encode("2002")).roles("ADMIN", "USER");
+        auth.inMemoryAuthentication().withUser("doc").password(encoder.encode("2002")).roles("USER");
        
         // auth.jdbcAuthentication().dataSource(DataSource)
         // .usersByUsernameQuery("select username,active from user where username=?") 
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     http.csrf();               /// pour dire à spring szucrity de verifier les requetes
     http.formLogin();
+    http.exceptionHandling().accessDeniedPage("/noAutoried");
 
     }
 

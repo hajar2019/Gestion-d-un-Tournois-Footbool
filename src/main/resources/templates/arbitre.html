@@ -12,14 +12,14 @@
         <div class="card" style="max-width: 1000px;margin: 0 auto">
             <h2 class="card-header bg-primary text-center">Les Arbitre</h2>
             <div class="card-body">
-                <a th:href="@{/addArbitre}" class="btn btn-primary m-1">Ajouter un Arbitre</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addArbitre}" class="btn btn-primary m-1">Ajouter un Arbitre</a>
                 <table class="table  ">
                     <thead>
                         <tr class="table-dark ">
                             <th scope="col">ID</th>
                             <th scope="col">Nom Arbitre</th>
                             <th scope="col">Pays</th>
-                            <th scope="col">Options</th>
+                            <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,7 +27,7 @@
                             <td th:text="${arbi.idArbitre}">
                             <td th:text="${arbi.nomArbitre}">
                             <td th:text="${arbi.nationaliteArbitre}">
-                            <td style="align-self: center;max-width: 50px">
+                            <td sec:authorize="hasRole('ROLE_ADMIN')" style="align-self: center;max-width: 50px">
                                 <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
                                 <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteArbitre(id=${arbi.idArbitre})}"
                                     class="btn btn-danger align-self-center">Delete</a>

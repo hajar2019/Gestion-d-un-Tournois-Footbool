@@ -41,10 +41,15 @@
             </div>
         </div>
         <div class="d-flex flex-row me-3 ">
-            <a class="btn btn-primary me-2 " th:href="@{/userLogin}" role="button" aria-haspopup="true" aria-expanded="false">
-                Connexion
+
+            <a class=" me-2 " style="font-size: 20px; text-decoration: none;text-transform: uppercase;color: white;display: flex;flex-direction: row;" th:href="@{/userLogin}" >
+                <i class="fas fa-user-circle" style="font-size: 35px;"></i>
+                <span sec:authentication="name" style="margin:2px 20px 0px 5px;"></span>
             </a>
-            <a class="btn btn-danger " th:href="@{/logout}" role="button" aria-haspopup="true" aria-expanded="false">
+            <!-- <a class="btn btn-primary me-2 " th:href="@{/userLogin}" aria-haspopup="true" aria-expanded="false">
+                <span sec:authorize="!isAuthenticated()">Connexion</span>            
+            </a> -->
+            <a class="btn btn-danger " th:href="@{/logout}" >
                 Deconnexion
             </a>
         

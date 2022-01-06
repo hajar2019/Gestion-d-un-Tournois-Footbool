@@ -12,7 +12,7 @@
         <div class="card">
             <h2 class="card-header bg-primary text-center" >Les Utilisateurs</h2>
             <div class="card-body">
-                <a th:href="@{/addUser}" class="btn btn-primary m-1">Ajouter un Utilisateur</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addUser}" class="btn btn-primary m-1">Ajouter un Utilisateur</a>
                 <table class="table  ">
                     <thead>
                     <tr class="table-dark ">
@@ -20,7 +20,7 @@
                         <th scope="col">Nom User</th>
                         <th scope="col">Roles User</th>
                         <th scope="col">Etat User</th>
-                        <th scope="col" >Options</th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" >Options</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                         <td th:text="${user.username}">
                         <td th:text="${user.role}">
                         <td th:text="${user.active}">
-                        <td style="align-self: center;max-width: 50px">
+                        <td sec:authorize="hasRole('ROLE_ADMIN')" style="align-self: center;max-width: 50px">
                             <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
                             <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteUser(id=${user.idUser})}" class="btn btn-danger align-self-center">Delete</a>
                             <a th:href="@{/editUser(id=${user.idUser})}" class="btn btn-success align-self-center">Edit</a>

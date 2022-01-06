@@ -15,7 +15,7 @@
             <div class="card-body">
 
                 <div class="d-flex flex-row justify-content-between ">
-                    <a th:href="@{/addMatch}" class="btn btn-primary m-1">Ajouter un Match</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addMatch}" class="btn btn-primary m-1">Ajouter un Match</a>
                     <form th:action="@{/joueur}" method="get">
                         <input type="text" placeholder="Search" th:value="${motCle}" name="motCle">
                         <button class="btn btn-primary" type="submit">chercher</button>
@@ -32,7 +32,7 @@
                             <th scope="col">Heure</th>
                             <th scope="col">Arbitre</th>
                             <th scope="col">Stade</th>
-                            <th scope="col">Options</th>
+                            <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                             <td th:text="${mat.heureMatch}"></td>
                             <td th:text="${mat.arbitre.nomArbitre}"></td>
                             <td th:text="${mat.stade.nomStade}"></td>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteMatch(id=${mat.idMatch})}" class="btn btn-danger">Delete</a>
                                 <a th:href="@{/editMatch(id=${mat.idMatch})}" class="btn btn-success">Edit</a>
                             </td>

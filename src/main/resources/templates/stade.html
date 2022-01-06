@@ -13,7 +13,7 @@
         <div class="card">
             <h2 class="card-header bg-primary text-center">Les Stades</h2>
             <div class="card-body">
-                <a th:href="@{/addStade}" class="btn btn-primary m-1">Ajouter un Equipe</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addStade}" class="btn btn-primary m-1">Ajouter un Equipe</a>
                 <table class="table  ">
                     <thead>
                         <tr class="table-dark ">
@@ -21,7 +21,7 @@
                             <th scope="col">Nom Stade</th>
                             <th scope="col">Ville du Stade</th>
                             <th scope="col">Matchs</th>
-                            <th scope="col">Options</th>
+                            <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,8 +29,8 @@
                             <td th:text="${sta.idStade}">
                             <td th:text="${sta.nomStade}">
                             <td th:text="${sta.villeStade}">
-                            <td th:text="${sta.matches}">
-                            <td style="align-self: center;">
+                            <td th:text="${sta.matches} ? ${sta.matches} : 'RETIRED'">
+                            <td sec:authorize="hasRole('ROLE_ADMIN')" style="align-self: center;">
                                 <!--  on a deux façon de recuperer l'id de l'equipe th:href="@{'/editEquipe/' + ${equi.idEquipe}}"-->
                                 <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/deleteStade(id=${sta.idStade})}"
                                     class="btn btn-danger ">Delete</a>
