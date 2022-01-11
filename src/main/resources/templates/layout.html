@@ -42,7 +42,7 @@
         </div>
         <div class="d-flex flex-row me-3 ">
 
-            <a class=" me-2 " style="font-size: 20px; text-decoration: none;text-transform: uppercase;color: white;display: flex;flex-direction: row;" th:href="@{/userLogin}" >
+            <a sec:authorize="!isAuthenticated()" class=" me-2 " style="font-size: 20px; text-decoration: none;text-transform: uppercase;color: white;display: flex;flex-direction: row;" th:href="@{/userLogin}" >
                 <i class="fas fa-user-circle" style="font-size: 35px;"></i>
                 <span sec:authentication="name" style="margin:2px 20px 0px 5px;"></span>
             </a>

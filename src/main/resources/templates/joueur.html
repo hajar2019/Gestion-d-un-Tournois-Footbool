@@ -28,7 +28,7 @@
                     <th scope="col">Nom Joueur</th>
                     <th scope="col">Poste du Joueur</th>
                     <th scope="col">Equipe du Joueur</th>
-                    <th  scope="col" >Options</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" >Options</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                     <td th:text="${jou.nomJoueur}">
                     <td th:text="${jou.posteJoueur}">
                     <td th:text="${jou.equipes.nomEquipe}">
-                    <td  > 
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" > 
                         <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
                         <a th:href="@{/editJoueur(id=${jou.idJoueur})}" class="btn btn-success">Edit</a>
                     </td>

@@ -18,6 +18,8 @@
                     <tr class="table-dark ">
                         <th scope="col">ID</th>
                         <th scope="col">Nom User</th>
+                        <th scope="col">Prenom User</th>
+                        <th scope="col">Nom User</th>
                         <th scope="col">Roles User</th>
                         <th scope="col">Etat User</th>
                         <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" >Options</th>
@@ -26,7 +28,9 @@
                     <tbody>
                     <tr th:each="user:${lesUsers}" class="table-secondary">
                         <td th:text="${user.idUser}">
-                        <td th:text="${user.username}">
+                        <td th:text="${user.nom}">
+                        <td th:text="${user.prenom}">
+                        <td th:text="${user.email}">
                         <td th:text="${user.role}">
                         <td th:text="${user.active}">
                         <td sec:authorize="hasRole('ROLE_ADMIN')" style="align-self: center;max-width: 50px">

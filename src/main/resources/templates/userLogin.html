@@ -10,51 +10,58 @@
 
 <body>
     <div layout:fragment="content" class="container align-self-center">
-<div class="card-body d-flex flex-column justify-content-center">
-        <div>
-            <h2 class="card-header m-4 text-dark text-center text-light">Veillez vous connecter</h2>
-        </div>
-
-        <div class=" d-flex flex-row align-self-center"
-            style="height: 400px;width: 80%; border: 2px solid gray; border-radius: 5px; ">
-            <div class="col d-flex flex-column justify-content-center ">
-                <h2 class="text-center mb-4 text-dark">Via Reseaux Sociaux</h2>
-
-                <button style="background-color: #4267B2; color: aliceblue; font-size: 20px;" type="button" class="m-2 btn  btn-ls">
-                    <i style="font-size: 25px; margin-top: 5px;" class="fab fa-facebook-f"></i> Faceboock</button>
-
-                <button style="background-color: #DB4437; color: aliceblue;font-size: 20px;" type="button" class="m-2 btn  btn-ls">
-                    <i style="font-size: 25px; margin-top: 5px; " class="fab fab fa-google"></i> Google</button>
-
-                <button style="background-color: #0072b1; color: aliceblue;font-size: 20px;" type="button" class="m-2 btn  btn-ls">
-                    <i style="font-size: 25px; margin-top: 5px;" class="fab fa-linkedin-in"></i> Linkdin</button>
-
-                <button style="background-color: #1DA1F2; color: aliceblue;font-size: 20px;" type="button" class="m-2 btn  btn-ls">
-                    <i style="font-size: 25px; margin-top: 5px; " class="fab fa-twitter"></i> Twiter</button>
-            </div>
-
-            <div style="border: 1px solid gray; height: 200px; margin: 20px;"></div>
-
-            <div class="col m-2 d-flex flex-column justify-content-center">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Username</label>
-                    <input type="email" class="form-control" 
-                     placeholder="Username">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Password</label>
-                    <input type="email" class="form-control" 
-                     placeholder="Password">
-                </div>
-                <div class="mt-4 d-flex justify-content-between">
-                    <a  th:href="@{/userRegister}"  class="btn btn-success ">Create new User</a>
-                    <button type="button" class="btn btn-primary ">Login</button>
-                </div>
+        <div class="card-body d-flex flex-column justify-content-center">
+            <div>
+                <h2 class="card-header m-4 text-dark text-center text-light">Veillez vous connecter</h2>
                 
             </div>
-        </div>
 
-    </div>
+            <div class=" d-flex flex-row align-self-center"
+                style="height: 400px;width: 80%; border: 2px solid gray; border-radius: 5px; ">
+                <div class="col d-flex flex-column justify-content-center ">
+                    <h2 class="text-center mb-4 text-dark">Via Reseaux Sociaux</h2>
+
+                    <button style="background-color: #4267B2; color: aliceblue; font-size: 20px;" type="button"
+                        class="m-2 btn  btn-ls">
+                        <i style="font-size: 25px; margin-top: 5px;" class="fab fa-facebook-f"></i> Faceboock</button>
+
+                    <button style="background-color: #DB4437; color: aliceblue;font-size: 20px;" type="button"
+                        class="m-2 btn  btn-ls">
+                        <i style="font-size: 25px; margin-top: 5px; " class="fab fab fa-google"></i> Google</button>
+
+                    <button style="background-color: #0072b1; color: aliceblue;font-size: 20px;" type="button"
+                        class="m-2 btn  btn-ls">
+                        <i style="font-size: 25px; margin-top: 5px;" class="fab fa-linkedin-in"></i> Linkdin</button>
+
+                    <button style="background-color: #1DA1F2; color: aliceblue;font-size: 20px;" type="button"
+                        class="m-2 btn  btn-ls">
+                        <i style="font-size: 25px; margin-top: 5px; " class="fab fa-twitter"></i> Twiter</button>
+                </div>
+
+                <div style="border: 1px solid gray; height: 200px; margin: 20px;"></div>
+
+                <form class="col m-2 d-flex flex-column justify-content-center" method="post" th:action="@{/login}">
+                    <div th:if="${succes}">
+                        <div class="alert alert-info">Votre compte a bien été enregistrer, Veuillerz vous connecter!</div>
+                    </div>
+                    <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Username</label>
+                            <input type="email" class="form-control" placeholder="Username" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a th:href="@{/userRegister}" class="btn btn-success ">Create new User</a>
+                            <button type="button" class="btn btn-primary ">Login</button>
+                        </div>
+
+                    
+                </form>
+            </div>
+
+        </div>
 </body>
 
 </html>

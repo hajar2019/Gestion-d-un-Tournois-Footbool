@@ -2,22 +2,28 @@ package doc.raf.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import doc.raf.dao.UserRepositoey;
 import doc.raf.entities.User;
+import doc.raf.service.UserAlreadyExistException;
+import doc.raf.service.UserService;
 
 @Controller
 public class ContUser {
     @Autowired 
     UserRepositoey userRepo;
+    @Autowired
+    UserService userService;
 
     @GetMapping(value = "/user")
     public String gettAllEquipe(Model model) {
@@ -34,7 +40,11 @@ public class ContUser {
     }
 
     @PostMapping("/registerUser")
-    public String saveEquipe(User user) {
+    public String saveUser(final @Valid User user,final BindingResult bindingResult,Model model) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("user",user);
+            return "userAdd";
+        }
         String encoded = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encoded);
         userRepo.save(user);
@@ -60,15 +70,31 @@ public class ContUser {
         return "userEdit";
     }
 
-    @GetMapping(value = "userLogin")
+    @GetMapping(value = "/userLogin")
     public String loginUser() {
 
         return "userLogin";
     }
 
-    @GetMapping(value = "userRegister")
-    public String registerNewUser() {
-
+    @GetMapping(value = "/userRegister")
+    public String registerNewUser(Model model) {
+        model.addAttribute("user",new User());
         return "userRegister";
+    }
+
+    @PostMapping(value = "/userSave")
+    public String saveNewUser(final @Valid User user, final BindingResult bindingResult,final Model model)  {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            return "userRegister";
+        }
+        if(userService.checkIfUserExist(user.getEmail())){
+             model.addAttribute("user", user);
+             model.addAttribute("exist", "Votre Email exist déjà! Choisissez un autre");
+            return "userRegister";
+        }
+        userService.register(user);
+        model.addAttribute("succes", "Votre compte a bien été enregistrer avec succès, vous voupez vous connecter");
+        return "/userLogin";
     }
 }
