@@ -14,21 +14,18 @@ public class DefaultUserService implements UserService {
     @Autowired
     PasswordEncoder encoder;
     @Override
-    public void register(User user) throws UserAlreadyExistException {
-        if(checkIfUserExist(user.getEmail())){
-            throw new UserAlreadyExistException("Cette email exist déjà");
-            
-        }        
+    public void register(User user) {
+                
         String encoded = encoder.encode(user.getPassword());
         user.setPassword(encoded);
-        user.setRole("ROLE_USER");
+        user.setRoles("ROLE_USER");
         userRepo.save(user);
 
     }
 
     @Override
     public boolean checkIfUserExist(String email) {
-        return userRepo.findByEmail(email)!=null ? true : false;
+        return userRepo.findByUsername(email)!=null ? true : false;
     }
     
 }

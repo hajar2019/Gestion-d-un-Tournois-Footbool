@@ -1,10 +1,8 @@
 package doc.raf.secuirity;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,21 +15,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //Pour personnaliser la securite on a besoin de definir deux methodes
     
    // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    @Autowired
-    DataSource DataSource;
+ 
     
+    private MyUserDetailsService userDetailsService;
+
+    public SecurityConfig(MyUserDetailsService userDetailsService){
+        this.userDetailsService = userDetailsService;
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder encoder = passwordEncoder();
+        auth.authenticationProvider(authenticationProvider());
+        
         // auth.inMemoryAuthentication().withUser("Abdouraouf").password(encoder.encode("2002")).roles("ADMIN", "USER");
         // auth.inMemoryAuthentication().withUser("doc").password(encoder.encode("2002")).roles("USER");
 
-        auth.jdbcAuthentication().dataSource(DataSource)
-            .usersByUsernameQuery("select nom as principal,password as credentials,active from user where nom=?")
-            .authoritiesByUsernameQuery("select nom,role from user where nom=?")
-            .passwordEncoder(encoder)
-            .rolePrefix("ROLE_");
+        // auth.jdbcAuthentication().dataSource(DataSource)
+        //     .usersByUsernameQuery("select nom as principal,password as credentials,active from user where nom=?")
+        //     .authoritiesByUsernameQuery("select nom,role from user where nom=?")
+        //     .rolePrefix("ROLE_");
     }
 
     
@@ -53,6 +56,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ;
     http.exceptionHandling().accessDeniedPage("/noAutoried");
 
+    }
+
+    @Bean
+    DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(this.userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 
     @Bean

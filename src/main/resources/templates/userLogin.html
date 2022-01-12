@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Add User</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
 
                 <div style="border: 1px solid gray; height: 200px; margin: 20px;"></div>
 
-                <form class="col m-2 d-flex flex-column justify-content-center" method="post" th:action="@{/login}">
+                <form class="col m-2 d-flex flex-column justify-content-center" method="post" th:action="@{/Login}">
                     <div th:if="${succes}">
                         <div class="alert alert-info">Votre compte a bien été enregistrer, Veuillerz vous connecter!</div>
                     </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="mt-4 d-flex justify-content-between">
                             <a th:href="@{/userRegister}" class="btn btn-success ">Create new User</a>
-                            <button type="button" class="btn btn-primary ">Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
 
                     

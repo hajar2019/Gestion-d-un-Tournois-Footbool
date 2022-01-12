@@ -9,4 +9,11 @@ public class securityController {
     public String erreurPage(){
         return "erreurPage";
     }
+
+    @GetMapping(value = "/login")
+    public String loginUser() {
+
+        return "login";
+    }
+
 }

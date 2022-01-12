@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import doc.raf.dao.UserRepositoey;
 import doc.raf.entities.User;
-import doc.raf.service.UserAlreadyExistException;
 import doc.raf.service.UserService;
 
 @Controller
@@ -88,7 +86,7 @@ public class ContUser {
             model.addAttribute("user", user);
             return "userRegister";
         }
-        if(userService.checkIfUserExist(user.getEmail())){
+        if(userService.checkIfUserExist(user.getUsername())){
              model.addAttribute("user", user);
              model.addAttribute("exist", "Votre Email exist déjà! Choisissez un autre");
             return "userRegister";
